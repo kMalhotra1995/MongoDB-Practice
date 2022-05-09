@@ -1,0 +1,40 @@
+
+
+// for using the current database
+use('MyDB');
+
+
+//for updated the multiple documents according to the filter mentioned
+db.Customer.updateMany({Age:{$gte:23}},{$set:{Age:27}});
+
+
+//display all the names from documents inserted
+db.Customer.find({},{"Name":1,_id:1})
+
+
+//to show all the documents added
+db.Customer.find()
+
+
+//find the first occurence of the filter and update the data with value within set 
+db.Customer.findOneAndUpdate({Name:"Rahul"},{$set:{Name:"Sachin"}});
+
+
+//to display limited amount of documents -- this will show top 2 names from documents 
+db.Customer.find({},{"Name":1,_id:0}).limit(2)
+
+
+//skip will skip number given from the top documents and then limit will show the data after skipping
+db.Customer.find({},{"Name":1,"Address":1,_id:0}).limit(1).skip(1)
+
+
+//display the Names in sorted order (-1 is for descending and 1 is for ascending)
+db.Customer.find({},{"Name":1,_id:0}).sort({"Name":-1})
+
+
+//address will display in ascending order
+db.Customer.find({},{"Address":1,_id:0}).sort({"Address":1})
+
+
+//creating index for particular field
+db.Customer.createIndex({"Name":1})

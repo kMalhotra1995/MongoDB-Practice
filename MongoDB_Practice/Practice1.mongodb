@@ -1,0 +1,28 @@
+
+
+//Statement used for using this database
+use('MyDB');
+
+
+// statement used to insert single data or row into collection
+db.Customer.insert({'Name':'Komal','gender':'Female','Address':'Punjab','Age':26})
+
+
+//statement multiple data into single collection
+db.Customer.insertMany([{'Name':'Rahul','gender':'Male','Address':'Delhi','Age':23},{'Name':'Rahul','gender':'Male','Address':'Delhi','Age':23},{'Name':'Sumit','gender':'Male','Address':'Indore','Age':22},{'Name':'Simran','gender':'Female','Address':'Pune','Age':23}]);
+
+
+//statement to show all data entered into collection
+db.Customer.find();
+
+
+//statement to find data having age greater then 22
+db.Customer.find({Age:{$gt:22}});
+
+
+//statment to use AND to find out the data having gender 'female' and age 23
+db.Customer.find({$and:[{gender:'Female'},{Age:23}]}).pretty();
+
+
+//statement to find out the age having 23 in first occurence in the data an update the address 
+db.Customer.findOneAndUpdate({Age:23},{$set:{Address:"Pathankot"}});

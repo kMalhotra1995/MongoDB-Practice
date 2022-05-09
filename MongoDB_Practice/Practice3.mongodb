@@ -1,0 +1,36 @@
+
+
+
+//using the current database
+use("MyDB")
+
+//show all the documents entered into Customer collection
+db.Customer.find()
+
+
+//Count the total number of females in the document
+db.Customer.aggregate([{$match :{gender:"Female"}},{$count:"Total"}])
+
+
+//this will show the count of both the males nd females and display the result in total variable
+db.Customer.aggregate([{$group:{_id:"$gender",total:{$sum:1}}}])
+
+
+//this will  match the age with 23 and will display the result $gt(greater then) in the result
+db.Customer.aggregate([{$match: {Age:{$gt:23}}}])
+
+
+//this will display the result after sorting it according to the Age 
+db.Customer.aggregate([{'$sort':{'Age':-1}}])
+
+
+//This will show the unique data in the field we will give
+db.Customer.distinct("gender")
+
+
+//this is the direct function which will count the total number of enteries in the field
+db.Customer.count("Name")
+
+
+//this will show the total indexes we have added
+db.Customer.getIndexes()
